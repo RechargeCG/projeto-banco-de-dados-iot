@@ -37,18 +37,21 @@ CREATE TABLE Diagnostico_Sensores (
     temp_operacao_c DECIMAL(4, 1),
     fk_Telemetrias_leitura_id BIGINT
 );
- 
-ALTER TABLE Configuracao_Sensores ADD CONSTRAINT FK_Configuracao_Sensores_2
-    FOREIGN KEY (fk_Veiculos_veiculo_id)
-    REFERENCES Veiculos (veiculo_id)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE Telemetrias ADD CONSTRAINT FK_Telemetrias_2
+
+ALTER TABLE Configuracao_Sensores 
+ADD CONSTRAINT FK_Configuracao_Sensores_2
     FOREIGN KEY (fk_Veiculos_veiculo_id)
     REFERENCES Veiculos (veiculo_id)
     ON DELETE CASCADE;
- 
-ALTER TABLE Diagnostico_Sensores ADD CONSTRAINT FK_Diagnostico_Sensores_2
+    
+ALTER TABLE Telemetrias 
+ADD CONSTRAINT FK_Telemetrias_2
+    FOREIGN KEY (fk_Veiculos_veiculo_id)
+    REFERENCES Veiculos (veiculo_id)
+    ON DELETE CASCADE;
+    
+ALTER TABLE Diagnostico_Sensores 
+ADD CONSTRAINT FK_Diagnostico_Sensores_2
     FOREIGN KEY (fk_Telemetrias_leitura_id)
     REFERENCES Telemetrias (leitura_id)
-    ON DELETE RESTRICT;
+    ON DELETE CASCADE;
